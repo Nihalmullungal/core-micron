@@ -1,5 +1,9 @@
-import 'package:coremicron/presentation/login_screen/login_screen.dart';
+import 'package:coremicron/application/home_bloc/home_bloc.dart';
+import 'package:coremicron/application/login_bloc/login_bloc.dart';
+import 'package:coremicron/application/splash_bloc/splash_cubit.dart';
+import 'package:coremicron/presentation/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,9 +14,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SplashCubit(),
+        ),
+        BlocProvider(
+          create: (context) => LoginBloc(),
+        ),
+        BlocProvider(create: (context) => HomeScreenBloc()),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }

@@ -3,8 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppConstants {
-  static TextFormField textField({required String hint}) {
+  static TextFormField textField(
+      {required String hint,
+      required TextEditingController controller,
+      required bool isPassword}) {
     return TextFormField(
+      controller: controller,
+      obscureText: isPassword,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "required ";
+        }
+        return null;
+      },
       decoration: InputDecoration(
           hintText: hint,
           hintStyle: FontTheme.hintStyle,
@@ -30,5 +41,15 @@ class AppConstants {
   static Future<bool> getSharedpreferences() async {
     final shared = await SharedPreferences.getInstance();
     return shared.getBool("login") ?? false;
+  }
+
+  static snackBar(
+      {required BuildContext ctx,
+      required String message,
+      required bool isSuccess}) {
+    return ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: isSuccess ? Colors.green : Colors.red,
+    ));
   }
 }
