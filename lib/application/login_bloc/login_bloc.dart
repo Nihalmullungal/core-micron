@@ -2,25 +2,32 @@ import 'dart:async';
 import 'package:coremicron/appconstants.dart';
 import 'package:coremicron/application/login_bloc/login_event.dart';
 import 'package:coremicron/application/login_bloc/login_state.dart';
+import 'package:coremicron/domain/firebase_operations.dart';
+import 'package:coremicron/firebase_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitalState()) {
     on<LoginClickedEvent>((event, emit) async {
-      isValidating = true;
       if (formKey.currentState!.validate()) {
+        isValidating = true;
         isLoginFailed = false;
         emit(LoginCheckingState());
-        await Future.delayed(const Duration(seconds: 2), () {
-          if (userController.text.trim().toString().toLowerCase() == "admin" &&
-              passwordController.text.trim() == "123") {
-            isValidating = true;
+        final loginDetails = await FirebaseOperations.getUserandPassword();
+        await Future.delayed(const Duration(seconds: 2), () async {
+          if (userController.text.trim().toString().toLowerCase() ==
+                  loginDetails[FirebaseConstants.userName] &&
+              passwordController.text.trim() ==
+                  loginDetails[FirebaseConstants.password]) {
             emit(LoginRedirectingState());
-            Timer(const Duration(milliseconds: 1500), () {
+            await Future.delayed(const Duration(milliseconds: 1500), () {
               AppConstants.setSharedPreferences(true);
             });
             emit(LoginSuccessState());
+            isValidating = false;
+            userController.clear();
+            passwordController.clear();
           } else {
             isValidating = false;
             isLoginFailed = true;

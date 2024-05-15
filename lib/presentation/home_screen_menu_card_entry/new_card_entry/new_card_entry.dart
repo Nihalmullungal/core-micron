@@ -1,9 +1,9 @@
 import 'package:coremicron/presentation/home_screen/widgets/home_screen_menu/home_screen_menu.dart';
-import 'package:coremicron/presentation/home_screen/widgets/home_screen_progress_report/home_screen_progress_report.dart';
+import 'package:coremicron/presentation/home_screen_menu_card_entry/new_card_entry/widgets/new_card_entry_view.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class NewCardEntry extends StatelessWidget {
+  const NewCardEntry({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
                     image: AssetImage("assets/image/body-bg2.jpg"),
                     fit: BoxFit.cover)),
             child: const Column(
-              children: [HomeScreenMenu(), HomeScreenProgressreport()],
+              children: [HomeScreenMenu(), NewCardEntryView()],
             ),
           ),
         ));

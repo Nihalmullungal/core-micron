@@ -14,7 +14,10 @@ class FontTheme {
       color: Colors.black.withOpacity(0.3));
 
   static TextStyle loginText = const TextStyle(
-      fontFamily: "sans", fontWeight: FontWeight.bold, color: Colors.white);
+      fontSize: 12,
+      fontFamily: "sans",
+      fontWeight: FontWeight.bold,
+      color: Colors.white);
 
   static TextStyle signInText = const TextStyle(
       fontFamily: "sans", fontWeight: FontWeight.w600, color: Colors.black);
@@ -25,11 +28,31 @@ class FontTheme {
   static TextStyle expansionTileText = const TextStyle(
       fontFamily: "sans",
       fontSize: 11,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       color: Colors.black);
   static TextStyle expansionTileSubText = const TextStyle(
       fontFamily: "sans",
       fontSize: 9.5,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
+      color: Colors.black);
+  static TextStyle expansionTileBackup = const TextStyle(
+      fontFamily: "sans",
+      fontSize: 9.5,
+      fontWeight: FontWeight.w700,
+      color: Colors.green);
+  static TextStyle companyDetailsHeading = const TextStyle(
+      fontFamily: "sans",
+      fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: Colors.white);
+  static TextStyle modalSheetHeading = const TextStyle(
+      fontFamily: "sans",
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
+      color: Colors.white);
+  static TextStyle updatingTitle = const TextStyle(
+      fontFamily: "sans",
+      fontSize: 12,
+      fontWeight: FontWeight.w700,
       color: Colors.black);
 }

@@ -16,6 +16,7 @@ class LoginTextField extends StatelessWidget {
           AppConstants.textField(
               hint: "User Name",
               controller: loginbl.userController,
+              maxLines: 1,
               isPassword: false),
           SizedBox(
             height: AppConstants.heightOfScreen(context) * .02,
@@ -23,6 +24,7 @@ class LoginTextField extends StatelessWidget {
           AppConstants.textField(
               isPassword: true,
               hint: "Password",
+              maxLines: 1,
               controller: loginbl.passwordController),
           SizedBox(
             height: AppConstants.heightOfScreen(context) * .02,
